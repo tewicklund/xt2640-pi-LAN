@@ -75,7 +75,7 @@ log_file_name=input("Enter name of log file: ")
 #power_analyzers=serial_init(PA_PORTS)
 
 #get query string from file
-f=open('query_string.txt','r')
+f=open('query-string.txt','r')
 query_string=f.readline()
 f.close()
 print(f'Found query string {query_string}')
