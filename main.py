@@ -99,7 +99,7 @@ for x in range(duration_int):
 
     #write data to log
     for analyzer_num in range(len(xitron_ip_list)):
-        log_pa_response(xitron_ip_list[analyzer_num],x+1,query_string,log_file_name)
+        log_pa_response(xitron_ip_list[analyzer_num],xitron_port_list[analyzer_num],x+1,query_string,log_file_name)
         print(f'logged point {x+1} out of {duration_int} from analyzer at {xitron_ip_list[analyzer_num]}')
     
     #write endline to log (so all PA data from the same time ends up in the same row)
