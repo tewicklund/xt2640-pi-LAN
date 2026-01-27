@@ -30,8 +30,9 @@ def send_scpi_command(ip_address, port, command):
         response = s.recv(1024).decode()
         
         # Print and return the response
-        #print("Response:", response)
+        print("Response:", response)
         return response
+
         
     finally:
         # Close the socket
