@@ -20,7 +20,7 @@ def send_scpi_command(ip_address, port, command):
     
     try:
         # Connect to the specified IP address and port
-        s.connect((ip_address, port))
+        s.connect(ip_address, port)
         s.settimeout(10)
         
         # Send the SCPI command
@@ -44,19 +44,13 @@ def send_scpi_command(ip_address, port, command):
 #function for getting pa data via serial comms
 def log_pa_response(xitron_ip,xitron_port,measurement_number,query_string,log_file):
     #get measurement date
-    #pa.write("DATE?\n".encode("ascii"))
     date_string = send_scpi_command(xitron_ip, xitron_port, "DATE?\n").removesuffix('\r\n')
-    #date_string=pa.readline().decode().removesuffix('\r\n')
 
     #get measurement time
-    #pa.write("TIME?\n".encode("ascii"))
     time_string = send_scpi_command(xitron_ip,xitron_port,"TIME?\n").removesuffix('\r\n')
-    #time_string=pa.readline().decode().removesuffix('\r\n')
 
     #get measurement values
-    #pa.write(query_string.encode("ascii"))
     measurement_string = send_scpi_command(xitron_ip, xitron_port, query_string)
-    #measurement_string=pa.readline().decode().removesuffix('\r\n')
 
 
     #build log string
@@ -70,8 +64,6 @@ duration_int=int(input("Enter test duration in seconds: "))
 delay_int=int(input("Enter delay period before test start in seconds: "))
 log_file_name=input("Enter name of log file: ")
 
-#build list of power analyzers as pyserial objects
-#power_analyzers=serial_init(PA_PORTS)
 
 #get query string from file
 f=open('query-string.txt','r')
@@ -101,10 +93,6 @@ for x in range(duration_int):
         log_pa_response(xitron_ip_list[analyzer_num],xitron_port_list[analyzer_num],x+1,query_string,log_file_name)
         print(f'logged point {x+1} out of {duration_int} from analyzer at {xitron_ip_list[analyzer_num]}')
     
-    #write endline to log (so all PA data from the same time ends up in the same row)
-    f=open(log_file_name,'a')
-    f.write('\n')
-    f.close()
 
     #wait till 1 second elapses before getting next measurement
     while(time.time()-start_time<1):
