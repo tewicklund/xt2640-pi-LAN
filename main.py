@@ -14,7 +14,7 @@ xitron_port_list = [10733]
 def send_scpi_command(ip_address, port, command):
 
     # debug prints
-    print(f"Making connection to {ip_address} at port {port} with command {command}")
+    #print(f"Making connection to {ip_address} at port {port} with command {command}")
     # Create a socket object
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
@@ -30,7 +30,7 @@ def send_scpi_command(ip_address, port, command):
         response = s.recv(1024).decode()
         
         # Print and return the response
-        print("Response:", response)
+        #print("Response:", response)
         return response
 
         
