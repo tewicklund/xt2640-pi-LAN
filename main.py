@@ -7,7 +7,7 @@ import time
 import socket
 
 #user variables
-xitron_ip_list = ["192.168.0.83"]
+xitron_ip_list = ["192.168.99.245"]
 xitron_port_list = [10733]
 
 
