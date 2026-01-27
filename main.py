@@ -37,18 +37,20 @@ def send_scpi_command(ip_address, port, command):
     finally:
         # Close the socket
         s.close()
+
+        # let the socket actually close
         time.sleep(0.05)
 
 #function for getting pa data via serial comms
 def log_pa_response(xitron_ip,xitron_port,measurement_number,query_string,log_file):
     #get measurement date
     #pa.write("DATE?\n".encode("ascii"))
-    date_string = send_scpi_command(xitron_ip, xitron_port, "DATE?\n")
+    date_string = send_scpi_command(xitron_ip, xitron_port, "DATE?\n").removesuffix('\r\n')
     #date_string=pa.readline().decode().removesuffix('\r\n')
 
     #get measurement time
     #pa.write("TIME?\n".encode("ascii"))
-    time_string = send_scpi_command(xitron_ip,xitron_port,"TIME?\n")
+    time_string = send_scpi_command(xitron_ip,xitron_port,"TIME?\n").removesuffix('\r\n')
     #time_string=pa.readline().decode().removesuffix('\r\n')
 
     #get measurement values
