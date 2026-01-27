@@ -1,5 +1,5 @@
 #xt2640_data_logger.py
-#Use: Run this script on a raspberry pi connected via USB-RS232 to Xitron xt2640 power analyzer
+#Use: Run this script on a raspberry pi connected via LAN to Xitron xt2640 power analyzer
 #extends the capabilities of the built in logging system
 
 #imports
@@ -11,15 +11,10 @@ xitron_ip_list = ["192.168.99.245"]
 xitron_port_list = [10733]
 
 
-#function for setting up serial comms
-# def serial_init(PORTS):
-#     serial_objects=[]
-#     for pa_port in PORTS:
-#         serial_object=serial.Serial(port=pa_port, baudrate=115200,timeout=3,dsrdtr=True)
-#         serial_objects.append(serial_object)
-#     return serial_objects
-
 def send_scpi_command(ip_address, port, command):
+
+    # debug prints
+    print(f"Making connection to {ip_address} at port {port} with command {command}")
     # Create a socket object
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
