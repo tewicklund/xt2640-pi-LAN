@@ -13,3 +13,9 @@ __pycache__/
 .env
 .env.*
 *.env
+
+# Ignore all CSV files anywhere
+*.csv
+
+# Ignore the entire CSVs directory
+CSVs/
