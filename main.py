@@ -20,7 +20,7 @@ def send_scpi_command(ip_address, port, command):
     
     try:
         # Connect to the specified IP address and port
-        s.connect(ip_address, port)
+        s.connect((ip_address, port))
         s.settimeout(10)
         
         # Send the SCPI command
